@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  kibana:
+    build:
+      context: config/kibana
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+
+  elasticsearch:
+    build:
+      context: config/elasticsearch
+    ports:
+      - "9200:9200"
+    networks:
+      - elk
+
+  logstash:
+    build:
+      context: config/logstash
+    networks:
+      - elk
+
+networks:
+  elk:

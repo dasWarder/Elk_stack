@@ -1,0 +1,3 @@
+logging:
+  file:
+    path: EKL_stak/log/file.log

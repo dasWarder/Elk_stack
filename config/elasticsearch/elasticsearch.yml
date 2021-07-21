@@ -1,0 +1,4 @@
+cluster.name: "docker-cluster"
+network.host: "localhost:9200"
+
+discovery.zen.minimum_master_nodes: 1
