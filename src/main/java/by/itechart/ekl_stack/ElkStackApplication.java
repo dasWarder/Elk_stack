@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EklStackApplication {
+public class ElkStackApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EklStackApplication.class, args);
+        SpringApplication.run(ElkStackApplication.class, args);
     }
 
 }

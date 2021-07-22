@@ -8,16 +8,28 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    volumes:
+      - type: bind
+        source: ./config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch/
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
     environment:
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-      ELASTIC_PASSWORD: changeme
     networks:
       - elk
 
   kibana:
     build:
       context: config/kibana
+    volumes:
+      - type: bind
+        source: ./config/kibana.yml
+        target: /usr/share/kibana/config/kibana/
+        read_only: true
     ports:
       - "5601:5601"
     networks:
@@ -28,10 +40,29 @@ services:
   logstash:
     build:
       context: config/logstash
-    networks:
-      - elk
+    volumes:
+      - type: bind
+        source: ./config/logstash.yml
+        target: /usr/share/logstash/config/logstash/
+        read_only: true
+      - type: bind
+        source: ./config/logstash/pipeline/pipeline.yml
+        target: /usr/share/logstash/pipeline/pipeline/
+        read_only: true
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    ports:
+      - "5000:5000/tcp"
+      - "5400:5400"
+      - "9600:9600"
     depends_on:
       - elasticsearch
+    networks:
+      - elk
 
 networks:
   elk:
+    driver: bridge
+
+volumes:
+  elasticsearch:

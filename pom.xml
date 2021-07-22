@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>by.itechart</groupId>
-    <artifactId>EKL_stack</artifactId>
+    <artifactId>ELK_stack</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>EKL_stack</name>
+    <name>ELK_stack</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
